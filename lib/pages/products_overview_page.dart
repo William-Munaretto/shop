@@ -3,12 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:shop/components/badgee.dart';
 import 'package:shop/components/product_grid.dart';
 import 'package:shop/models/cart.dart';
-import 'package:shop/models/product_list.dart';
 import 'package:shop/utils/app_routes.dart';
 
 enum FilterOptions {
-  Favorites,
-  Alls,
+  favorites,
+  alls,
 }
 
 class ProductsOverviewPage extends StatefulWidget {
@@ -31,18 +30,18 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
-              PopupMenuItem(
+              const PopupMenuItem(
+                value: FilterOptions.favorites,
                 child: Text('Somente favoritos'),
-                value: FilterOptions.Favorites,
               ),
-              PopupMenuItem(
+              const PopupMenuItem(
+                value: FilterOptions.alls,
                 child: Text('Todos'),
-                value: FilterOptions.Alls,
               ),
             ],
             onSelected: (FilterOptions selectedValue) {
               setState(() {
-                if (selectedValue == FilterOptions.Favorites) {
+                if (selectedValue == FilterOptions.favorites) {
                   _showFavoriteOnly = true;
                 } else {
                   _showFavoriteOnly = false;
