@@ -1,17 +1,13 @@
-# shop
+# SHOP - Aplicativo para gerenciamento de estado com PATH PROVIDER
 
-A new Flutter project.
+## Descrição
 
-## Getting Started
+**SHOP** é um aplicativo desenvolvido com Flutter que tem como propósito demonstrar o gerenciamento de estado com o **path PROVIDER**.  
+O app é focado no gerenciamento de vendas de produtos, como um e-commerce, e foi feito durante a **Seção 8** do curso da **COD3R** na plataforma **UDEMY**.
 
-This project is a starting point for a Flutter application.
+## Funcionalidades
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# shop
+- **Tela Minha Loja**: Exibe os _Cards_ de diferentes produtos.
+- **Tela Carrinho**: Exibe os produtos selecionados para o carrinho para uma possível compra.
+- **Tela de Pedidos**: Exibe detalhes de cada pedido que é feito com base nos produtos escolhidos e colocados no carrinho.
+- **Tela de Detalhes dos Produtos**: Exibe detalhes de cada produto cadastrado.
