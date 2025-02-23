@@ -9,6 +9,10 @@ class ProductList with ChangeNotifier {
   List<Product> get items => [..._items]; // [..._items] é um clone da lista _items.
   List<Product> get fvoriteItems => _items.where((product) => product.isFavorite).toList(); // [..._items] é um clone da lista _items.
 
+  int get itemCount {
+    return _items.length;
+  }
+
   void addProduct(Product product) {
     _items.add(product);
     notifyListeners();
