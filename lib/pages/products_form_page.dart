@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product.dart';
@@ -19,7 +17,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
 
   final _imageUrlController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final _formData = Map<String, Object>();
+  final _formData = <String, Object>{};
 
   @override
   void initState() {
@@ -108,16 +106,16 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
                 onSaved: (name) => _formData['name'] = name ?? '',
-                validator: (_name) {
+                validator: (name) {
                   //se retorna null o campo foi validade com sucesso
                   //se returnar uma string, vai aparece se conter erro no camppo.
-                  final name = _name ?? '';
+                  final _name = name ?? '';
 
-                  if (name.trim().isEmpty) {
+                  if (_name.trim().isEmpty) {
                     return 'Nome é obrigatório';
                   }
 
-                  if (name.trim().length < 3) {
+                  if (_name.trim().length < 3) {
                     return 'Nome precisa mínimo 3 letras ';
                   }
 
