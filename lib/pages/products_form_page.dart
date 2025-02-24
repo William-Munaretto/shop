@@ -27,6 +27,25 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_formData.isEmpty) {
+      final arg = ModalRoute.of(context)?.settings.arguments;
+      if (arg != null) {
+        final product = arg as Product;
+        _formData['id'] = product.id;
+        _formData['name'] = product.name;
+        _formData['description'] = product.description;
+        _formData['price'] = product.price;
+        _formData['imageUrl'] = product.imageUrl;
+
+        _imageUrlController.text = product.imageUrl;
+      }
+    }
+  }
+
   bool isValidImageUrl(String url) {
     bool isValidUrl = Uri.tryParse(url)?.hasAbsolutePath ?? false;
     bool endsWithFile = url.toLowerCase().endsWith('.png') || url.toLowerCase().endsWith('.jpg') || url.toLowerCase().endsWith('.jpeg');
@@ -48,7 +67,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).addProductFromData(_formData);
+    ).saveProduct(_formData);
     Navigator.of(context).pop();
   }
 
@@ -80,6 +99,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
           child: ListView(
             children: [
               TextFormField(
+                initialValue: _formData['name']?.toString(),
                 decoration: const InputDecoration(
                   labelText: 'Nome',
                 ),
@@ -105,6 +125,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['price']?.toString(),
                 decoration: const InputDecoration(
                   labelText: 'Preço',
                 ),
@@ -126,6 +147,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['description']?.toString(),
                 decoration: const InputDecoration(
                   labelText: 'Descrição',
                 ),
