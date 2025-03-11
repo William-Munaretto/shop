@@ -57,7 +57,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
     setState(() {});
   }
 
-  void _submitForm() {
+  Future<void> _submitForm() async {
     _formKey.currentState?.save();
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) {
@@ -66,15 +66,31 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
     setState(() {
       _isLoading = true;
     });
-    Provider.of<ProductList>(
-      context,
-      listen: false,
-    ).saveProduct(_formData).then((value) {
+    try {
+      await Provider.of<ProductList>(
+        context,
+        listen: false,
+      ).saveProduct(_formData);
+    } catch (error) {
+      showDialog<void>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Erro ao salvar produto!!!'),
+          content: const Text('Ocorreu um erro para salvar o produto, tente salvar novamente.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop,
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } finally {
       setState(() {
         _isLoading = false;
       });
       Navigator.of(context).pop();
-    });
+    }
   }
 
   @override
