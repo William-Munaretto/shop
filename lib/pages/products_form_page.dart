@@ -73,6 +73,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
       ).saveProduct(_formData);
     } catch (error) {
       showDialog<void>(
+        // ignore: use_build_context_synchronously
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Erro ao salvar produto!!!'),
@@ -89,6 +90,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
       setState(() {
         _isLoading = false;
       });
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     }
   }
@@ -236,7 +238,7 @@ class _ProductsFormPageState extends State<ProductsFormPage> {
                           alignment: Alignment.center,
                           child: _imageUrlController.text.isEmpty
                               ? const Text('Informe a Url')
-                              : Container(
+                              : SizedBox(
                                   width: 100,
                                   height: 100,
                                   child: FittedBox(
