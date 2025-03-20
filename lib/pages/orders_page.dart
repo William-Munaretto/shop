@@ -22,7 +22,7 @@ class OrdersPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapShot.error != null) {
-            return Text('Ocorreu um erro!');
+            return const Text('Ocorreu um erro!');
           } else {
             return Consumer<OrderList>(
               builder: (ctx, orders, child) => ListView.builder(
